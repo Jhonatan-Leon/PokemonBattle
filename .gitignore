@@ -1,0 +1,12 @@
+/_build/
+/deps/
+
+.bream
+.ez
+/cover/
+/doc/
+/ebin/
+
+.log
+.elixir_ls
+/plt/

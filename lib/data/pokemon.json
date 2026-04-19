@@ -1,0 +1,14 @@
+[
+  {
+    "especie": "charmander",
+    "tipos": ["Fuego"],
+    "ataque_base": 52,
+    "defensa_base": 43
+  },
+  {
+    "especie": "geodude",
+    "tipos": ["Roca", "Tierra"],
+    "ataque_base": 80,
+    "defensa_base": 100
+  }
+]
