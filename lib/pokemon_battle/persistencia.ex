@@ -12,7 +12,7 @@ defmodule PokemonBattle.Persistencia do
         mapa = JSON.decode!(content)
         # definimos los mapas con la struct
         Enum.map(mapa, fn m ->
-          mapa_a_struct(m)
+          map_a_pokemon(m)
         end)
       {:error,razon} ->
           IO.puts("Error al carga el archivo json #{inspect(razon)}")
@@ -21,7 +21,7 @@ defmodule PokemonBattle.Persistencia do
   end
 
   #Conversión de mapa a struct
-  defp mapa_a_struct (mapa) do
+  defp map_a_pokemon (mapa) do
     %PokemonBattle.Pokemon {
       especie: String.to_atom(mapa["especie"]),
       ataque: mapa["ataque_base"],
@@ -34,11 +34,25 @@ defmodule PokemonBattle.Persistencia do
     {:ok, content} ->
       JSON.decode!(content)
       |> Enum.map(fn m ->
-        mapa_a_struct(m)
+        map_a_trainer(m)
       end)
     {:error, razon} ->
       IO.puts("Error en la carga de usuarios #{inspect(razon)}")
       []
     end
+  end
+
+  defp map_a_trainer (mapa) do
+    %PokemonBattle.Trainer {
+      usuario: mapa["usuario"],
+      clave: String.to_integer(mapa["clave"]),
+      victorias: mapa["victorias"],
+      monedas_actuales: mapa["monedas_actuales"],
+      monedas_acumuladas: mapa["monedas_acumuladas"],
+      sobres_pendientes: mapa["sobres_pendientes"],
+      inventario: mapa["inventario"],
+      equipos: mapa["equipos"]
+
+    }
   end
 end

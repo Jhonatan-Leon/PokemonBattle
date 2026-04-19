@@ -1,0 +1,33 @@
+[
+    {
+    "usuario": "Carlos",
+    "clave": "1234",
+    "victorias": 7,
+    "monedas_actuales": 230,
+    "monedas_acumuladas": 1800,
+    "sobres_pendientes": 0,
+    "inventario": [
+    {
+        "id": 48291,
+        "especie": "charmander",
+        "rareza": "comun",
+        "ataque": 53,
+        "defensa": 44,
+        "velocidad": 66,
+        "dueño_original": "Carlos",
+        "movimientos": [
+        {"nombre": "ascuas", "tipo": "fuego", "poder_base": 30},
+        {"nombre": "nitrocarga", "tipo": "fuego", "poder_base": 30},
+        {"nombre": "placaje", "tipo": "normal", "poder_base": 35},
+        {"nombre": "picadura", "tipo": "bicho", "poder_base": 32}
+        ]
+    }
+    ],
+    "equipos": [
+    {
+        "nombre": "rapido",
+        "pokemon_ids": [48291, 71834, 93012]
+    }
+    ]
+    }
+]
