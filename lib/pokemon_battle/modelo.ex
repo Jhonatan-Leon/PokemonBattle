@@ -7,3 +7,7 @@ end
 defmodule PokemonBattle.Trainer do
   defstruct [:id, :usuario, :clave , victorias: 0, monedas_actuales: 0, monedas_acumuladas: 0, sobres_pendientes: 0, inventario: [], equipos: []]
 end
+
+defmodule PokemonBattle.Store do
+  defstruct [:id, :precio, :tipo, probabilidad: [] ]
+end

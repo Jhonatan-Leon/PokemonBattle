@@ -1,6 +1,7 @@
 defmodule PokemonBattle.Persistencia do
   @path_pokemon "lib/data/pokemon.json"
   @path_trainer "lib/data/trainer.json"
+  @path_store "lib/data/store.json"
 
   def load_pokemon do
     # Revisión de carpeta
@@ -55,4 +56,27 @@ defmodule PokemonBattle.Persistencia do
 
     }
   end
+
+  # Carga de sobres
+  def load_store do
+    case File.read(@path_store) do
+    {:ok, content} ->
+      JSON.decode!(content)
+      |> Enum.map(fn m ->
+        map_a_store(m)
+      end)
+    {:error, razon} ->
+    IO.puts("Error al carga los sobres: #{inspect(razon)}")
+    end
+  end
+
+  defp map_a_store(mapa) do
+    %PokemonBattle.Store {
+      id: mapa["id"],
+      precio: mapa["precio"],
+      tipo: mapa["tipo"],
+      probabilidad: mapa["probabilidades"] || []
+    }
+  end
+
 end
