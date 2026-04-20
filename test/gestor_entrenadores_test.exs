@@ -1,0 +1,2 @@
+defmodule PokemonBattle.GestorEntrenadores_Test do
+end

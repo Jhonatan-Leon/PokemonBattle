@@ -52,7 +52,8 @@ defmodule PokemonBattle.Persistencia do
       monedas_acumuladas: mapa["monedas_acumuladas"],
       sobres_pendientes: mapa["sobres_pendientes"],
       inventario: mapa["inventario"],
-      equipos: mapa["equipos"]
+      equipos_guardados: mapa["equipos"],
+      equipo: mapa["equipo"]
 
     }
   end
@@ -77,6 +78,17 @@ defmodule PokemonBattle.Persistencia do
       tipo: mapa["tipo"],
       probabilidad: mapa["probabilidades"] || []
     }
+  end
+
+  def save_trainer (trainer) do
+    list_trainers = load_trainer()
+    # Agregamos al entrenador a la lista de entrenadores
+    new_list = [trainer | list_trainers]
+    # Convertimos toda la lista a mapas
+    |> Enum.map(fn e -> Map.from_struct(e) end) |> Jason.encode!()
+    # Guardamos en el archivo JSON
+    |> File.write!(@path_trainers)
+
   end
 
 end
