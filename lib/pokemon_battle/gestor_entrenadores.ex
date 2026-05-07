@@ -10,7 +10,7 @@ defmodule PokemonBattle.GestorEntrenadores do
     if trainer do
       # menu(sesion, store)
       IO.puts("Inicio sesión")
-      Server.menu(trainer, store)
+      PokemonBattle.Interfaz.menu(trainer, store)
     else
       IO.puts("Credenciales incorrectas ")
       login(sesion, store)

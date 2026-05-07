@@ -1,5 +1,11 @@
-defmodule Server do
-  def start do
+defmodule PokemonBattle.Interfaz do
+
+  def start(_type, _args) do
+    main()
+    {:ok, self()}
+  end
+
+  def main do
     store = PokemonBattle.Persistencia.load_store();
     trainers = PokemonBattle.Persistencia.load_trainer();
 
@@ -14,7 +20,7 @@ defmodule Server do
         PokemonBattle.GestorEntrenadores.login(trainers, store);
       "2" ->
         IO.puts("Cerrando sesión")
-        start();
+        main();
       _ ->
         IO.puts("Opción no válida")
         # Habiliar opción para registro automatico
@@ -36,6 +42,7 @@ defmodule Server do
     case opcion do
       "1" ->
         PokemonBattle.GestorEntrenadores.perfil(trainer);
+        menu(trainer, store)
       _ ->
         IO.puts("La opción no es valida")
         menu(trainer, store)
@@ -43,6 +50,3 @@ defmodule Server do
 
   end
 end
-
-
-Server.start();
