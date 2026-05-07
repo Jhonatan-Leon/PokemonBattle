@@ -7,7 +7,7 @@ defmodule PokemonBattle.Persistencia do
     # Revisión de carpeta
     #IO.puts("Buscando archivo en: #{File.cwd!()}")
     # Lectura de archivo json
-    case File.read(@path_pokemon) do
+    case File.read!(@path_pokemon) do
       {:ok, content} ->
         #decodificación del json
         mapa = JSON.decode!(content)
@@ -85,9 +85,9 @@ defmodule PokemonBattle.Persistencia do
     # Agregamos al entrenador a la lista de entrenadores
     new_list = [trainer | list_trainers]
     # Convertimos toda la lista a mapas
-    |> Enum.map(fn e -> Map.from_struct(e) end) |> Jason.encode!()
+    new_data = Enum.map(new_list, fn e -> Map.from_struct(e) end) |> Jason.encode!()
     # Guardamos en el archivo JSON
-    |> File.write!(@path_trainers)
+    File.write!(@path_trainer, new_data, :append)
 
   end
 

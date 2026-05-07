@@ -10,6 +10,7 @@ defmodule PokemonBattle.GestorEntrenadores do
     if trainer do
       # menu(sesion, store)
       IO.puts("Inicio sesión")
+      Server.menu(trainer, store)
     else
       IO.puts("Credenciales incorrectas ")
       login(sesion, store)
@@ -23,7 +24,7 @@ defmodule PokemonBattle.GestorEntrenadores do
     username = IO.gets("Ingrese su usuario: ") |> String.trim()
     password = IO.gets("Ingrese una clave: ") |> String.trim()
 
-    new_user = Enum.fin(sesion, fn e -> e.usuario == username end)
+    new_user = Enum.find(sesion, fn e -> e.usuario == username end)
 
     if !new_user do
       %PokemonBattle.Trainer {
@@ -35,5 +36,14 @@ defmodule PokemonBattle.GestorEntrenadores do
       IO.puts("El usuario ya existe")
       register(sesion, store)
     end
+  end
+
+  def perfil(trainer) do
+    Enum.map(trainer, fn t ->
+      IO.puts("--Perfil de #{ t.usuario}")
+      IO.puts("Monedas: #{Enum.sum(t.monedas_actuales)}")
+      IO.puts("Sobres pendientes: #{Enum.sum(t. sobres_pendientes)}")
+      IO.puts("Pókemon en inventario: #{Enum.sum(t.inventario)}")
+    end)
   end
 end
