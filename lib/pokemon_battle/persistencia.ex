@@ -26,7 +26,8 @@ defmodule PokemonBattle.Persistencia do
     %PokemonBattle.Pokemon {
       especie: String.to_atom(mapa["especie"]),
       ataque: mapa["ataque_base"],
-      defensa: mapa["defensa_base"]
+      defensa: mapa["defensa_base"],
+      velocidad_base: mapa["velocidad_base"]
     }
   end
 

@@ -40,15 +40,31 @@ defmodule MotorBatalla do
     end
   end
 
-  # Fórmula Final de Daño (Sección 7.6) [cite: 278]
+  # Fórmula Final de Daño
   def calcular_dano_total(dano_base, tipo_mov, tipos_defensor, tipos_atacante) do
     efectividad = calcular_efectividad_ataque(tipo_mov, tipos_defensor)
     stab = definir_stab(tipo_mov, tipos_atacante)
 
-    # Factor aleatorio entre 0.85 y 1.00 [cite: 280]
     factor_aleatorio = 0.85 + (:rand.uniform() * 0.15)
 
-    # El daño final debe ser truncado (trunc) [cite: 278]
     trunc(dano_base * efectividad * stab * factor_aleatorio)
   end
-end # CIERRA MotorBatalla
+
+  def determinar_quien_inicia(p1,p2) do # pokemon 1 y pókemon 2
+    cond do
+      p1.velocidad_base > p2.velocidad_base -> {p1,p2} # esto es el orden por como se tome la tupla
+      p2.velocidad_base > p1.velocidad_base -> {p2,p1}
+      p1.velocidad_base == p2.velocidad_base -> Enum.shuffle([p1, p2])
+      |> List.to_tuple() #si son iguales se vuelve aleatorio el primer turno
+    end
+  end
+
+  def iniciar_proceso_batalla(e1, e2) do
+    spawn(fn -> loop_batalla(e1,e2,1) end) #entrenador 1 y el entrenador 2
+  end
+
+  def loop_batalla(e1,e2,turno) do
+    IO.puts("\n=== TURNO #{turno} ====")
+
+  end
+end
