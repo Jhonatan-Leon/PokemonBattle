@@ -1,7 +1,7 @@
 [
     {
-    "usuario": "Carlos",
-    "clave": "1234",
+    "usuario":"Carlos",
+    "clave":"1234",
     "victorias": 7,
     "monedas_actuales": 230,
     "monedas_acumuladas": 1800,
@@ -20,6 +20,36 @@
         {"nombre": "nitrocarga", "tipo": "fuego", "poder_base": 30},
         {"nombre": "placaje", "tipo": "normal", "poder_base": 35},
         {"nombre": "picadura", "tipo": "bicho", "poder_base": 32}
+        ]
+    },
+    {
+        "id": 71834,
+        "especie": "squirtle",
+        "rareza": "comun",
+        "ataque": 48,
+        "defensa": 65,
+        "velocidad": 43,
+        "dueño_original": "Carlos",
+        "movimientos": [
+        {"nombre": "pistola agua", "tipo": "agua", "poder_base": 40},
+        {"nombre": "burbuja", "tipo": "agua", "poder_base": 20},
+        {"nombre": "placaje", "tipo": "normal", "poder_base": 35},
+        {"nombre": "mordisco", "tipo": "siniestro", "poder_base": 60}
+        ]
+    },
+    {
+        "id": 93012,
+        "especie": "bulbasaur",
+        "rareza": "comun",
+        "ataque": 49,
+        "defensa": 49,
+        "velocidad": 45,
+        "dueño_original": "Carlos",
+        "movimientos": [
+        {"nombre": "látigo cepa", "tipo": "planta", "poder_base": 45},
+        {"nombre": "hoja afilada", "tipo": "planta", "poder_base": 55},
+        {"nombre": "placaje", "tipo": "normal", "poder_base": 35},
+        {"nombre": "derribo", "tipo": "normal", "poder_base": 90}
         ]
     }
     ],
