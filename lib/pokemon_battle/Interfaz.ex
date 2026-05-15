@@ -1,54 +1,119 @@
 defmodule PokemonBattle.Interfaz do
-
   def start(_type, _args) do
     main()
     {:ok, self()}
   end
 
   def main do
-    store = PokemonBattle.Persistencia.load_store();
-    trainers = PokemonBattle.Persistencia.load_trainer();
+    store = PokemonBattle.Persistencia.load_store()
+    trainers = PokemonBattle.Persistencia.load_trainer()
 
-    IO.puts("Bievenido a Pokemon Battle: ");
-    IO.puts("1. Iniciar sesión ")
-    IO.puts("2. Salir")
+    IO.puts("\nBienvenido a Pokémon Battle")
+    IO.puts("1. Iniciar sesión")
+    IO.puts("2. Registrarse")
+    IO.puts("3. Salir")
 
-    opcion = IO.gets("Selecciona la opción: ") |> String.trim();
-
-    case opcion do
+    case get_input("Selecciona la opción: ") do
       "1" ->
-        PokemonBattle.GestorEntrenadores.login(trainers, store);
+        login_flow(trainers, store)
+
       "2" ->
-        IO.puts("Cerrando sesión")
-        main();
+        register_flow(trainers, store)
+
+      "3" ->
+        IO.puts("Hasta luego")
+
       _ ->
         IO.puts("Opción no válida")
-        # Habiliar opción para registro automatico
+        main()
+    end
+  end
+
+  defp login_flow(trainers, store) do
+    usuario = IO.gets("Usuario: ") |> String.trim()
+    contraseña = IO.gets("Contraseña: ") |> String.trim() |> String.to_integer()
+
+    case PokemonBattle.GestorEntrenadores.login(trainers, store, usuario, contraseña) do
+      {:ok, trainer} ->
+        IO.puts("Inicio de sesión correcto")
+        menu(trainer, store)
+
+      {:error, razon} ->
+        IO.puts("Error al iniciar sesión: #{razon}")
+        main()
+    end
+  end
+
+  defp register_flow(trainers, store) do
+    IO.puts("\nRegistro de nuevo entrenador")
+    usuario = IO.gets("Usuario: ")
+    contraseña = IO.gets("Contraseña: ")
+
+    case PokemonBattle.GestorEntrenadores.register(trainers, store, usuario, contraseña) do
+      {:ok, trainer} ->
+        IO.puts("Registro completado correctamente")
+        menu(trainer, store)
+
+      {:error, reason} ->
+        IO.puts("No se pudo registrar: #{reason}")
+        main()
     end
   end
 
   def menu(trainer, store) do
-    IO.puts("Bienvenido a Pokemon Battle #{trainer.usuario}")
-    opcion = IO.gets("Menu de juego: \n
-    1. Ver perfil
-    2. Ingresar al inventario
-    3. Ver equipos guardados
-    4. Clasificación
-    5. Tienda
-    6. Intercambio de pokemon
-    7. Entrar en Batalla
-    : ") |> String.trim()
+    IO.puts("\nBienvenido a Pokémon Battle, #{trainer.usuario}")
+    IO.puts("1. Ver perfil")
+    IO.puts("2. Ingresar al inventario")
+    IO.puts("3. Ver equipos guardados")
+    IO.puts("4. Clasificación")
+    IO.puts("5. Tienda")
+    IO.puts("6. Intercambio de Pokémon")
+    IO.puts("7. Entrar en batalla 1v1")
+    IO.puts("8. Cerrar sesión")
 
-    case opcion do
+    case get_input("Selecciona la opción: ") do
       "1" ->
-        PokemonBattle.GestorEntrenadores.perfil(trainer);
+        PokemonBattle.GestorEntrenadores.perfil(trainer)
         menu(trainer, store)
+
+      "2" ->
+        PokemonBattle.GestorEntrenadores.inventario(trainer)
+        menu(trainer, store)
+
+      "3" ->
+        PokemonBattle.GestorEntrenadores.equipos_guardados(trainer)
+        menu(trainer, store)
+
+      "4" ->
+        PokemonBattle.GestorEntrenadores.clasificacion(store)
+        menu(trainer, store)
+
+      "5" ->
+        PokemonBattle.GestorTienda.menu(trainer, store)
+        menu(trainer, store)
+
+      "6" ->
+        PokemonBattle.GestorIntercambio.intercambiar_pokemon(trainer, store)
+        menu(trainer, store)
+
       "7" ->
-        PokemonBattle.Servidor.menu_unirse_batallas(trainer)
+        PokemonBattle.GestorBatallas.sala_batalla_1v1(trainer, store)
+        menu(trainer, store)
+
+      "8" ->
+        IO.puts("Cerrando sesión")
+        main()
+
       _ ->
-        IO.puts("La opción no es valida")
+        IO.puts("Opción no válida")
         menu(trainer, store)
     end
+  end
 
+  defp get_input(prompt) do
+    case IO.gets("#{prompt}") do
+      nil -> ""
+      input -> String.trim(input)
+    end
   end
 end
