@@ -1,16 +1,41 @@
 defmodule TiposPokemon do
-  # basicmente estos metodos devuelven true si es alguno de los de la derecha
-  # adicional todo caso inverso deberia significar un ataque debil, es decir, un x0.5
-  defp es_fuerte?("Fuego", tipo_def), do: tipo_def in ["Planta", "Hielo", "Bicho"]
+  # Inmunidades (Daño x0)
+  defp es_inmune?("Normal", "Fantasma"), do: true
+  defp es_inmune?("Lucha", "Fantasma"), do: true
+  defp es_inmune?("Tierra", "Volador"), do: true
+  defp es_inmune?("Psíquico", "Siniestro"), do: true
+  defp es_inmune?("Fantasma", "Normal"), do: true
+  defp es_inmune?("Dragón", "Hada"), do: true
+  defp es_inmune?("Veneno", "Acero"), do: true
+  defp es_inmune?("Eléctrico", "Tierra"), do: true
+  defp es_inmune?(_, _), do: false
+
+  # El primer argumento es el tipo que ATACA, el segundo es el que DEFIENDE.
+  # Si devuelve true, el daño es x2.0
+
+  defp es_fuerte?("Fuego", tipo_def), do: tipo_def in ["Planta", "Hielo", "Bicho", "Acero"]
   defp es_fuerte?("Agua", tipo_def), do: tipo_def in ["Fuego", "Roca", "Tierra"]
   defp es_fuerte?("Planta", tipo_def), do: tipo_def in ["Agua", "Roca", "Tierra"]
   defp es_fuerte?("Eléctrico", tipo_def), do: tipo_def in ["Agua", "Volador"]
+  defp es_fuerte?("Hielo", tipo_def), do: tipo_def in ["Planta", "Tierra", "Volador", "Dragón"]
+  defp es_fuerte?("Lucha", tipo_def), do: tipo_def in ["Normal", "Hielo", "Roca", "Siniestro", "Acero"]
+  defp es_fuerte?("Veneno", tipo_def), do: tipo_def in ["Planta", "Hada"]
+  defp es_fuerte?("Tierra", tipo_def), do: tipo_def in ["Fuego", "Eléctrico", "Veneno", "Roca", "Acero"]
+  defp es_fuerte?("Volador", tipo_def), do: tipo_def in ["Planta", "Lucha", "Bicho"]
+  defp es_fuerte?("Psíquico", tipo_def), do: tipo_def in ["Lucha", "Veneno"]
+  defp es_fuerte?("Bicho", tipo_def), do: tipo_def in ["Planta", "Psíquico", "Siniestro"]
   defp es_fuerte?("Roca", tipo_def), do: tipo_def in ["Fuego", "Hielo", "Volador", "Bicho"]
-  # Este atrapa todo por fuera de las demas combinaciones, por lo que seria un x1
+  defp es_fuerte?("Fantasma", tipo_def), do: tipo_def in ["Psíquico", "Fantasma"]
+  defp es_fuerte?("Dragón", tipo_def), do: tipo_def in ["Dragón"]
+  defp es_fuerte?("Siniestro", tipo_def), do: tipo_def in ["Psíquico", "Fantasma"]
+  defp es_fuerte?("Acero", tipo_def), do: tipo_def in ["Hielo", "Roca", "Hada"]
+  defp es_fuerte?("Hada", tipo_def), do: tipo_def in ["Lucha", "Dragón", "Siniestro"]
+
   defp es_fuerte?(_, _), do: false
 
   def obtener_modificador(tipo_mov, tipo_def) do
     cond do
+      es_inmune?(tipo_mov, tipo_def) -> 0.0
       es_fuerte?(tipo_mov, tipo_def) -> 2.0
       es_fuerte?(tipo_def, tipo_mov) -> 0.5
       true -> 1.0
@@ -20,11 +45,7 @@ end
 
 defmodule MotorBatalla do
   def calcular_efectividad_ataque(tipo_mov, tipos_def) do
-    # ejemplo de funcionamiento del metodo
-    # Charizard(ataque tipo fuego) vs Snover(tipo planta/hielo)
-    # charizar ataca a snover entonces primero se toma el modificador del primer tipo de que daria un x2 porque es fuerte,
-    # porsteriormente se recorre el segundo tipo que tambien daria x2, ese x2 se suma al x2 anterior, dando como resultado que
-    # un ataque tipo fuego de charizard le daria un daño x4 a Snover
+    # Multiplica los modificadores por cada tipo del defensor
     Enum.reduce(tipos_def, 1.0, fn tipo_individual, acumulado ->
       acumulado * TiposPokemon.obtener_modificador(tipo_mov, tipo_individual)
     end)
@@ -68,8 +89,6 @@ defmodule MotorBatalla do
   end
 
   def loop_batalla(e1,e2,turno) do
-
-
 
     p1 = Enum.find(e1.equipo, fn pokemon -> pokemon.salud_maxima > 0 end) # AJUSTAR LA LOGICA DEPENDIENDO DE COMO MANEJEMOS LA SELECCION
     p2 = Enum.find(e2.equipo, fn pokemon -> pokemon.salud_maxima > 0 end) # DEL EQUIPO

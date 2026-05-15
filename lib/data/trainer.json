@@ -60,4 +60,185 @@
     }
     ]
     }
+    ,
+    {
+    "usuario": "Rztn",
+    "clave": "2008",
+    "victorias": 15,
+    "monedas_actuales": 850,
+    "monedas_acumuladas": 4200,
+    "sobres_pendientes": 1,
+    "inventario": [
+        {
+        "id": 10658,
+        "especie": "greninja",
+        "rareza": "legendario",
+        "ataque": 95,
+        "defensa": 67,
+        "velocidad": 122,
+        "dueño_original": "Rztn",
+        "tipos": ["Agua", "Siniestro"],
+        "movimientos": [
+            {"nombre": "shuriken de agua", "tipo": "agua", "poder_base": 15},
+            {"nombre": "tajo umbrío", "tipo": "siniestro", "poder_base": 70},
+            {"nombre": "hidrobomba", "tipo": "agua", "poder_base": 110},
+            {"nombre": "ataque rápido", "tipo": "normal", "poder_base": 40}
+        ]
+        },
+        {
+        "id": 20006,
+        "especie": "charizard",
+        "rareza": "epico",
+        "ataque": 84,
+        "defensa": 78,
+        "velocidad": 100,
+        "dueño_original": "Rztn",
+        "tipos": ["Fuego", "Volador"],
+        "movimientos": [
+            {"nombre": "lanzallamas", "tipo": "fuego", "poder_base": 90},
+            {"nombre": "ala de acero", "tipo": "acero", "poder_base": 70},
+            {"nombre": "llamarada", "tipo": "fuego", "poder_base": 110},
+            {"nombre": "garra dragón", "tipo": "dragón", "poder_base": 80}
+        ]
+        },
+        {
+        "id": 30448,
+        "especie": "lucario",
+        "rareza": "raro",
+        "ataque": 110,
+        "defensa": 70,
+        "velocidad": 90,
+        "dueño_original": "Rztn",
+        "tipos": ["Lucha", "Acero"],
+        "movimientos": [
+            {"nombre": "esfera aural", "tipo": "lucha", "poder_base": 80},
+            {"nombre": "puño incremento", "tipo": "lucha", "poder_base": 40},
+            {"nombre": "velocidad extrema", "tipo": "normal", "poder_base": 80},
+            {"nombre": "hueso palo", "tipo": "tierra", "poder_base": 65}
+        ]
+        },
+        {
+        "id": 40094,
+        "especie": "gengar",
+        "rareza": "raro",
+        "ataque": 65,
+        "defensa": 60,
+        "velocidad": 110,
+        "dueño_original": "Rztn",
+        "tipos": ["Fantasma", "Veneno"],
+        "movimientos": [
+            {"nombre": "bola sombra", "tipo": "fantasma", "poder_base": 80},
+            {"nombre": "puño sombra", "tipo": "fantasma", "poder_base": 60},
+            {"nombre": "bomba lodo", "tipo": "veneno", "poder_base": 90},
+            {"nombre": "tinieblas", "tipo": "fantasma", "poder_base": 0}
+        ]
+        },
+        {
+        "id": 50149,
+        "especie": "dragonite",
+        "rareza": "epico",
+        "ataque": 134,
+        "defensa": 95,
+        "velocidad": 80,
+        "dueño_original": "Rztn",
+        "tipos": ["Dragón", "Volador"],
+        "movimientos": [
+            {"nombre": "enfado", "tipo": "dragón", "poder_base": 120},
+            {"nombre": "vendaval", "tipo": "volador", "poder_base": 110},
+            {"nombre": "puño trueno", "tipo": "eléctrico", "poder_base": 75},
+            {"nombre": "hiperrayo", "tipo": "normal", "poder_base": 150}
+        ]
+        },
+        {
+        "id": 60130,
+        "especie": "gyarados",
+        "rareza": "comun",
+        "ataque": 125,
+        "defensa": 79,
+        "velocidad": 81,
+        "dueño_original": "Rztn",
+        "tipos": ["Agua", "Volador"],
+        "movimientos": [
+            {"nombre": "cascada", "tipo": "agua", "poder_base": 80},
+            {"nombre": "mordisco", "tipo": "siniestro", "poder_base": 60},
+            {"nombre": "hidrobomba", "tipo": "agua", "poder_base": 110},
+            {"nombre": "ciclón", "tipo": "dragón", "poder_base": 40}
+        ]
+        },
+        {
+        "id": 70025,
+        "especie": "pikachu",
+        "rareza": "comun",
+        "ataque": 55,
+        "defensa": 40,
+        "velocidad": 90,
+        "dueño_original": "Rztn",
+        "tipos": ["Eléctrico"],
+        "movimientos": [
+            {"nombre": "rayo", "tipo": "eléctrico", "poder_base": 90},
+            {"nombre": "impactrueno", "tipo": "eléctrico", "poder_base": 40},
+            {"nombre": "cola férrea", "tipo": "acero", "poder_base": 100},
+            {"nombre": "placaje", "tipo": "normal", "poder_base": 40}
+        ]
+        },
+        {
+        "id": 80143,
+        "especie": "snorlax",
+        "rareza": "raro",
+        "ataque": 110,
+        "defensa": 65,
+        "velocidad": 30,
+        "dueño_original": "Rztn",
+        "tipos": ["Normal"],
+        "movimientos": [
+            {"nombre": "golpe cuerpo", "tipo": "normal", "poder_base": 85},
+            {"nombre": "fuerza", "tipo": "normal", "poder_base": 80},
+            {"nombre": "triturar", "tipo": "siniestro", "poder_base": 80},
+            {"nombre": "descanso", "tipo": "psíquico", "poder_base": 0}
+        ]
+        },
+        {
+        "id": 90196,
+        "especie": "espeon",
+        "rareza": "raro",
+        "ataque": 65,
+        "defensa": 60,
+        "velocidad": 110,
+        "dueño_original": "Rztn",
+        "tipos": ["Psíquico"],
+        "movimientos": [
+            {"nombre": "psíquico", "tipo": "psíquico", "poder_base": 90},
+            {"nombre": "brillo mágico", "tipo": "hada", "poder_base": 80},
+            {"nombre": "psicorrayo", "tipo": "psíquico", "poder_base": 65},
+            {"nombre": "ataque rápido", "tipo": "normal", "poder_base": 40}
+        ]
+        },
+        {
+        "id": 100212,
+        "especie": "scizor",
+        "rareza": "epico",
+        "ataque": 130,
+        "defensa": 100,
+        "velocidad": 65,
+        "dueño_original": "Rztn",
+        "tipos": ["Bicho", "Acero"],
+        "movimientos": [
+            {"nombre": "tijera x", "tipo": "bicho", "poder_base": 80},
+            {"nombre": "puño bala", "tipo": "acero", "poder_base": 40},
+            {"nombre": "tajo cruzado", "tipo": "lucha", "poder_base": 100},
+            {"nombre": "golpe aéreo", "tipo": "volador", "poder_base": 60}
+        ]
+        }
+    ],
+    "equipos": [
+        {
+        "nombre": "equipo_principal",
+        "pokemon_ids": [10658, 20006, 30448]
+        },
+        {
+        "nombre": "equipo_tactico",
+        "pokemon_ids": [40094, 50149, 100212]
+        }
+    ]
+    }
 ]

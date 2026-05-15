@@ -1,5 +1,5 @@
 defmodule PokemonBattle.Persistencia do
-  @path_pokemon "lib/data/pokemon.json"
+  @path_pokemon "lib/data/Pokemons_Struct_v1.json"
   @path_trainer "lib/data/trainer.json"
   @path_store "lib/data/store.json"
 
@@ -24,10 +24,12 @@ defmodule PokemonBattle.Persistencia do
   #Conversión de mapa a struct
   defp map_a_pokemon (mapa) do
     %PokemonBattle.Pokemon {
+      id: mapa["id"],
       especie: String.to_atom(mapa["especie"]),
       ataque: mapa["ataque_base"],
       defensa: mapa["defensa_base"],
-      velocidad_base: mapa["velocidad_base"]
+      velocidad_base: mapa["velocidad_base"],
+      tipos: mapa["tipos"]
     }
   end
 

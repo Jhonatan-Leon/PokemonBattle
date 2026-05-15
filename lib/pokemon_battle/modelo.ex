@@ -1,6 +1,6 @@
 defmodule PokemonBattle.Pokemon do
   # Estructura definida para pokemons
-  defstruct [:id , :especie , :dueño_original, :rareza, :ataque, :defensa, :velocidad_base, movimientos: [], salud_maxima: 100]
+  defstruct [:id , :especie , :dueño_original, :rareza, :ataque, :defensa, :velocidad_base,tipos: [], movimientos: [], salud_maxima: 100]
 end
 
 # Nombre especifico para escalar los entrenadores

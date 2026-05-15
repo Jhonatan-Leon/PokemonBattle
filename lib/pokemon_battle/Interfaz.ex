@@ -97,7 +97,7 @@ defmodule PokemonBattle.Interfaz do
         menu(trainer, store)
 
       "7" ->
-        PokemonBattle.GestorBatallas.sala_batalla_1v1(trainer, store)
+        PokemonBattle.Servidor.menu_unirse_batallas(trainer)
         menu(trainer, store)
 
       "8" ->

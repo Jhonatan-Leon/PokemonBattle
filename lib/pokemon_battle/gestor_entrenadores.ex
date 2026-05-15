@@ -40,15 +40,17 @@ defmodule PokemonBattle.GestorEntrenadores do
     IO.puts("\n=== Inventario de #{trainer.usuario} (#{total_pokemon} Pokémon) ===")
 
     Enum.each(trainer.inventario, fn i ->
+      tipos = Enum.join(i["tipos"] || [], ", ")
+
       movimientos =
         i["movimientos"]
         |> Enum.map(fn m -> "#{m["nombre"]}(#{m["poder_base"]})" end)
         |> Enum.join(", ")
 
       IO.puts("
-    [#{i["id"]}] #{i["especie"]}, [#{i["rareza"]}]
-    Ataque: #{i["ataque"]} | Defensa: #{i["defensa"]} | Velocidad: #{i["velocidad"]}
-    Movimientos: #{movimientos}")
+      [#{i["id"]}] #{i["especie"]} (#{tipos})  [#{i["rareza"]}]
+      Ataque: #{i["ataque"]} | Defensa: #{i["defensa"]} | Velocidad: #{i["velocidad"]}
+      Movimientos: #{movimientos}")
     end)
   end
 
