@@ -43,6 +43,8 @@ defmodule PokemonBattle.Interfaz do
       "1" ->
         PokemonBattle.GestorEntrenadores.perfil(trainer);
         menu(trainer, store)
+      "7" ->
+        PokemonBattle.Servidor.menu_unirse_batallas(trainer)
       _ ->
         IO.puts("La opción no es valida")
         menu(trainer, store)

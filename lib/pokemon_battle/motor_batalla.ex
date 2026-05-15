@@ -1,11 +1,11 @@
 defmodule TiposPokemon do
   # basicmente estos metodos devuelven true si es alguno de los de la derecha
   # adicional todo caso inverso deberia significar un ataque debil, es decir, un x0.5
-  defp es_fuerte?("Fuego", def), do: def in ["Planta", "Hielo", "Bicho"]
-  defp es_fuerte?("Agua", def), do: def in ["Fuego", "Roca", "Tierra"]
-  defp es_fuerte?("Planta", def), do: def in ["Agua", "Roca", "Tierra"]
-  defp es_fuerte?("Eléctrico", def), do: def in ["Agua", "Volador"]
-  defp es_fuerte?("Roca", def), do: def in ["Fuego", "Hielo", "Volador", "Bicho"]
+  defp es_fuerte?("Fuego", tipo_def), do: tipo_def in ["Planta", "Hielo", "Bicho"]
+  defp es_fuerte?("Agua", tipo_def), do: tipo_def in ["Fuego", "Roca", "Tierra"]
+  defp es_fuerte?("Planta", tipo_def), do: tipo_def in ["Agua", "Roca", "Tierra"]
+  defp es_fuerte?("Eléctrico", tipo_def), do: tipo_def in ["Agua", "Volador"]
+  defp es_fuerte?("Roca", tipo_def), do: tipo_def in ["Fuego", "Hielo", "Volador", "Bicho"]
   # Este atrapa todo por fuera de las demas combinaciones, por lo que seria un x1
   defp es_fuerte?(_, _), do: false
 
@@ -54,17 +54,35 @@ defmodule MotorBatalla do
     cond do
       p1.velocidad_base > p2.velocidad_base -> {p1,p2} # esto es el orden por como se tome la tupla
       p2.velocidad_base > p1.velocidad_base -> {p2,p1}
-      p1.velocidad_base == p2.velocidad_base -> Enum.shuffle([p1, p2])
-      |> List.to_tuple() #si son iguales se vuelve aleatorio el primer turno
+      true ->
+      [p1, p2]
+      |> Enum.shuffle()
+      |> List.to_tuple()
     end
   end
+
+  # INTERFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
 
   def iniciar_proceso_batalla(e1, e2) do
     spawn(fn -> loop_batalla(e1,e2,1) end) #entrenador 1 y el entrenador 2
   end
 
   def loop_batalla(e1,e2,turno) do
-    IO.puts("\n=== TURNO #{turno} ====")
 
+
+
+    p1 = Enum.find(e1.equipo, fn pokemon -> pokemon.salud_maxima > 0 end) # AJUSTAR LA LOGICA DEPENDIENDO DE COMO MANEJEMOS LA SELECCION
+    p2 = Enum.find(e2.equipo, fn pokemon -> pokemon.salud_maxima > 0 end) # DEL EQUIPO
+
+    cond do
+  #    is_nil(p1) -> finalizar_batalla(e2,e1) # HACER LA LOGICA DEL FINALZAR BATLLA
+   #   is_nil(p2) -> finalizar_batalla(e1,e2)
+      true ->
+        IO.puts("\n=== TURNO #{turno} ====")
+        # me parece mejor ir por nombres en vez de rival y tal
+        IO.puts("#{e1.usuario}: #{p1.nombre} (#{p1.hp} HP)")
+        IO.puts("#{e2.usuario}: #{p2.nombre} (#{p2.hp} HP)")
+
+    end
   end
 end

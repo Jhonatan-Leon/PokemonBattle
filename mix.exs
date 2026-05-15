@@ -15,7 +15,7 @@ defmodule PokemonBattle.Mixproject do
   # Configuración de aplicación
   def application do
     [
-     # mod: {PokemonBattle.Interfaz, []},
+       mod: {PokemonBattle.Interfaz, []},
       extra_applications: [:logger]
     ]
 
